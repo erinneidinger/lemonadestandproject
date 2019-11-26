@@ -19,23 +19,22 @@ namespace LemonadeStand_3DayStarter
         public void AddingAmountOfLemons()
         {
             Console.WriteLine("How many lemons would you like to add to your recipe?");
-            amountOfLemons = Console.ReadLine();
-            //Inventory.lemons.Count -= amountOfLemons();
+            amountOfLemons = Convert.ToInt32(Console.ReadLine());
         }
         public void AddingAmountOfSugarCubes()
         {
             Console.WriteLine("How many sugar cubes would you like to add to your recipe?");
-            amountOfSugarCubes = Console.ReadLine();
+            amountOfSugarCubes = Convert.ToInt32(Console.ReadLine());
         }
         public void AddingAmountOfIceCubes()
         {
             Console.WriteLine("How many ice cubes would you like to add to your recipe?");
-            amountOfIceCubes = Console.ReadLine();
+            amountOfIceCubes = Convert.ToInt32(Console.ReadLine());
         }
         public void DeterminePricePerCup()
         {
             Console.WriteLine("Please write the price per cup:");
-            pricePerCup = Console.ReadLine();
+            pricePerCup = Convert.ToInt32(Console.ReadLine());
         }
     }
 }

@@ -30,14 +30,5 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("Your name is " + name + ".");
             Console.ReadLine();
         }
-        public void BuyIngredients()
-        {
-            Console.WriteLine("How many lemons would you like to buy?");
-
-        }
-        public void DetermineRecipe()
-        {
-
-        }
-
+    }
 }

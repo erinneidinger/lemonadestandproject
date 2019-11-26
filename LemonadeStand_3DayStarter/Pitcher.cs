@@ -14,5 +14,13 @@ namespace LemonadeStand_3DayStarter
         {
             cupsLeftInPitcher = 12;
         }
+
+        public void FillPitcher(Inventory inventory, Recipe recipe)
+        {
+            inventory.lemons.RemoveRange(0, recipe.amountOfLemons);
+            inventory.sugarCubes.RemoveRange(0, recipe.amountOfSugarCubes);
+            inventory.iceCubes.RemoveRange(0, 12 * recipe.amountOfIceCubes);
+            Console.ReadLine();
+        }  
     }
 }
