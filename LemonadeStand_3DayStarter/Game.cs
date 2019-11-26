@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {
-    class Game
+    public class Game
     {
         Player player;
         List<Day> days;
+        Store store;
+        Recipe recipe;
+        Wallet wallet = new Wallet();
+        Inventory inventory = new Inventory();
+        Pitcher pitcher = new Pitcher();
+        Weather weather = new Weather();
+        Day day = new Day();
+        Customer customer = new Customer();
+
         int currentDay;
 
         public Game()
@@ -21,5 +30,13 @@ namespace LemonadeStand_3DayStarter
 
         }
 
+        public void StartGame()
+        {
+            ListInstructions();
+            player.ChooseName();
+            store.SellLemons(player);
+
+            
+        }
     }
 }

@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {
-    class Weather
+    public class Weather
     {
         public string condition;
         public int temperature;
         public List<string> weatherConditions = new List<string>() { "Snowing", "Raining", "Sunny and clear", "Overcast"};
+        public string forecast;
         Random rnd = new Random();
-       
+        public int todayslow;
+        public int todayshigh;
+        public int actualtemperature;
+        public string actualweather;
+
         public Weather()
         {
             RandomizeCondition();
@@ -32,22 +37,33 @@ namespace LemonadeStand_3DayStarter
             {
                 case "Snowing":
                     temperature = rnd.Next(0, 32);
-                    Console.WriteLine(temperature);
+                    forecast = (weatherConditions[0] + " and " + temperature);
+                    Console.WriteLine(forecast);
                     break;
                 case "Raining":
-                    temperature = rnd.Next(40, 100);
-                    Console.WriteLine(temperature);
+                    temperature = rnd.Next(45, 100);
+                    forecast = (weatherConditions[1] + " and " + temperature);
+                    Console.WriteLine(forecast);
                     break;
                 case "Sunny and clear":
                     temperature = rnd.Next(55, 110);
-                    Console.WriteLine(temperature);
+                    forecast = (weatherConditions[2] + " and " + temperature);
+                    Console.WriteLine(forecast);
                     break;
                 case "Overcast":
-                    temperature = rnd.Next(45, 90);
-                    Console.WriteLine(temperature);
+                    temperature = rnd.Next(50, 90);
+                    forecast = (weatherConditions[3] + " and " + temperature);
+                    Console.WriteLine(forecast);
                     break;
             }
         }
-        
+        public void DetermineActualWeather()
+        {
+            todayslow = temperature - 10;
+            todayshigh = temperature + 10;
+            actualtemperature = rnd.Next(todayslow, todayshigh);
+            actualweather = (temperature + " and " + weatherConditions);
+        }
+
     }
 }

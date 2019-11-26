@@ -10,23 +10,25 @@ namespace LemonadeStand_3DayStarter
     {
         public Weather weather;
         public List<Customer> customers;
+        Random rnd = new Random();
 
         public Day()
         {
 
         }
 
-        public void DetermineWeather()
-        {
-
-        }
         public void DetermineCustomers()
         {
-
+            //how many customers buy
         }
-        public void TimeTracker()
+        public void SubtractCup()
         {
 
         }
+        public void AddProfitToWallet()
+        {
+
+        }
+        
     }
 }
