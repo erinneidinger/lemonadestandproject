@@ -29,11 +29,11 @@ namespace LemonadeStand_3DayStarter
             List<string> weatherConditions = new List<string>() { "" };
             condition = weatherConditions[rnd.Next(weatherConditions.Count)];
         }
-        private void RandomizeTemperature()
+        private string RandomizeTemperature()
         {
             Console.WriteLine();
             string condition = Console.ReadLine();
-            switch(condition)
+            switch (condition)
             {
                 case "Snowing":
                     temperature = rnd.Next(0, 32);
@@ -56,13 +56,23 @@ namespace LemonadeStand_3DayStarter
                     Console.WriteLine(forecast);
                     break;
             }
+            return forecast;
         }
-        public void DetermineActualWeather()
+        public string DetermineActualWeather()
         {
             todayslow = temperature - 10;
             todayshigh = temperature + 10;
             actualtemperature = rnd.Next(todayslow, todayshigh);
             actualweather = (temperature + " and " + weatherConditions);
+            return actualweather;
+        }
+        public void DisplayForecast()
+        {
+            Console.WriteLine(forecast);
+        }
+        public void DisplayActualWeather()
+        {
+            Console.WriteLine(actualweather);
         }
 
     }

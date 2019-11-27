@@ -14,12 +14,17 @@ namespace LemonadeStand_3DayStarter
 
         public Day()
         {
-
+            Weather weather = new Weather();
+            Customer customer = new Customer();
+            DetermineCustomers();
+            SubtractCup();
+            AddProfitToWallet();
         }
 
         public void DetermineCustomers()
         {
-            //how many customers buy
+
+            //how many customers buy based on weather
         }
         public void SubtractCup()
         {

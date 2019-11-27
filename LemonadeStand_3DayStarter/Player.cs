@@ -20,6 +20,8 @@ namespace LemonadeStand_3DayStarter
         {
             inventory = new Inventory();
             wallet = new Wallet();
+            pitcher = new Pitcher();
+            recipe = new Recipe();
         }
 
         // member methods (CAN DO)
@@ -28,7 +30,6 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("Choose a name");
             name = Console.ReadLine();
             Console.WriteLine("Your name is " + name + ".");
-            Console.ReadLine();
         }
     }
 }
