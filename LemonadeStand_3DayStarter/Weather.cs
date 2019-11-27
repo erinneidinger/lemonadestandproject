@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {
@@ -20,19 +17,17 @@ namespace LemonadeStand_3DayStarter
 
         public Weather()
         {
-            RandomizeCondition();
-            RandomizeTemperature();
         }
 
         private void RandomizeCondition()
         {
-            List<string> weatherConditions = new List<string>() { "" };
+            List<string> weatherConditions = new List<string>() { "Snowing", "Raining", "Sunny and clear", "Overcast" };
             condition = weatherConditions[rnd.Next(weatherConditions.Count)];
         }
         private string RandomizeTemperature()
+        
         {
             Console.WriteLine();
-            string condition = Console.ReadLine();
             switch (condition)
             {
                 case "Snowing":
@@ -54,6 +49,10 @@ namespace LemonadeStand_3DayStarter
                     temperature = rnd.Next(50, 90);
                     forecast = (weatherConditions[3] + " and " + temperature);
                     Console.WriteLine(forecast);
+                    break;
+                default:
+                    RandomizeTemperature();
+                    //figure out why temperature is not listed.
                     break;
             }
             return forecast;

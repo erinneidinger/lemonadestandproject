@@ -27,9 +27,9 @@ namespace LemonadeStand_3DayStarter
         {
             money -= transactionAmount;
         }
-        public void DisplayBalance()
+        public void DisplayBalance(double money)
         {
-            Console.WriteLine(money);
+            Console.WriteLine("Your current balence is " + money + ".");
         }
     }
 }

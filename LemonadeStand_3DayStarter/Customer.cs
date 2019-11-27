@@ -11,10 +11,12 @@ namespace LemonadeStand_3DayStarter
         List<string> Names = new List<string>() { "Jess", "Nick", "Cece", "Winston", "Schmidt" };
         string name;
         Random rnd = new Random();
+        int nametotal;
+
 
         public Customer()
         {
-            
+            //randomindex = rnd.Next(0, nametotal);
         }
         public void PercentageBuyingLemonade (Weather weather)
         {
@@ -22,7 +24,7 @@ namespace LemonadeStand_3DayStarter
             {
                 if (rnd.Next(0, 100) < 30)
                 {
-                    name = rnd.Next(Names.Count);
+                   
                     //buy lemonade
                 }
                 else
@@ -74,6 +76,11 @@ namespace LemonadeStand_3DayStarter
                     //pass by
                 }
             }
+        }
+
+        public void IdealCustomerPrice()
+        {
+
         }
     }
 }

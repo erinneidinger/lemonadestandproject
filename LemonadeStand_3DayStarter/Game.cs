@@ -17,7 +17,9 @@ namespace LemonadeStand_3DayStarter
         public Game()
         {
            player = new Player();
+           player = new Player();
            store = new Store();
+           
         }
         public void ListInstructions()
         {
@@ -31,13 +33,15 @@ namespace LemonadeStand_3DayStarter
             store.SellSugarCubes(player);
             store.SellIceCubes(player);
             store.SellCups(player);
+            player.wallet.DisplayBalance(player.wallet.Money);
             player.recipe.DeterminePricePerCup();
             player.recipe.AddingAmountOfLemons(player.inventory);
             player.recipe.AddingAmountOfSugarCubes(player.inventory);
             player.recipe.AddingAmountOfIceCubes(player.inventory);
-            player.pitcher.FillPitcher(player.inventory, player.recipe);
+            player.pitcher.DisplayLeftoverInventory(player.inventory);
             day.weather.DisplayForecast();
             day.weather.DisplayActualWeather();
+            Console.ReadLine();
             //program works, keep adding functions
 
             

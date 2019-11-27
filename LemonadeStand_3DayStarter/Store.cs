@@ -74,9 +74,10 @@ namespace LemonadeStand_3DayStarter
             return transactionAmount;
         }
 
-        private void PerformTransaction(Wallet wallet, double transactionAmount)
+        private double PerformTransaction(Wallet wallet, double transactionAmount)
         {
             wallet.PayMoneyForItems(transactionAmount);
+            return transactionAmount;
         }
     }
 }

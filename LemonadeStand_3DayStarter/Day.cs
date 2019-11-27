@@ -11,10 +11,11 @@ namespace LemonadeStand_3DayStarter
         public Weather weather;
         public List<Customer> customers;
         Random rnd = new Random();
+        public int cup;
 
         public Day()
         {
-            Weather weather = new Weather();
+            weather = new Weather();
             Customer customer = new Customer();
             DetermineCustomers();
             SubtractCup();

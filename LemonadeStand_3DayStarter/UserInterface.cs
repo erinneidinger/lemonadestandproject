@@ -16,6 +16,11 @@ namespace LemonadeStand_3DayStarter
             while (!userInputIsAnInteger || quantityOfItem < 0)
             {
                 Console.WriteLine("How many " + itemsToGet + " would you like to buy?");
+                Console.WriteLine("Lemons cost $0.50 cents each.");
+                Console.WriteLine("Sugar cubes cost $0.10 cents each.");
+                Console.WriteLine("Ice cubes cost $0.01 cents each.");
+                Console.WriteLine("Cups cost $0.25 cents each.");
+
                 Console.WriteLine("Please enter a positive integer (or 0 to cancel):");
 
                 userInputIsAnInteger = Int32.TryParse(Console.ReadLine(), out quantityOfItem);
