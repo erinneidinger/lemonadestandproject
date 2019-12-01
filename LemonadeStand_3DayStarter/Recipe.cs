@@ -27,7 +27,7 @@ namespace LemonadeStand_3DayStarter
             }
             else
             {
-                Console.ReadLine();
+                Console.WriteLine("You added " + amountOfLemons + " lemons to your recipe.");
             }
         }
         public void AddingAmountOfSugarCubes(Inventory inventory)
@@ -41,7 +41,7 @@ namespace LemonadeStand_3DayStarter
             }
             else
             {
-                Console.ReadLine();
+                Console.WriteLine("You added " + amountOfSugarCubes + " sugar cubes to your recipe.");
             }
         }
         public void AddingAmountOfIceCubes(Inventory inventory)
@@ -55,13 +55,14 @@ namespace LemonadeStand_3DayStarter
             }
             else
             {
-                Console.ReadLine();
+                Console.WriteLine("You added " + amountOfIceCubes + " ice cubes to your recipe.");
             }
         }
         public void DeterminePricePerCup()
         {
-            Console.WriteLine("Please write the price per cup:");
+            Console.WriteLine("Please write the price per cup (in cents):");
             pricePerCup = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Your cups cost " + pricePerCup + " cents.");
         }
     }
 }

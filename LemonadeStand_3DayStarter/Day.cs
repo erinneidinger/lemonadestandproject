@@ -29,7 +29,8 @@ namespace LemonadeStand_3DayStarter
         }
         public void SubtractCup()
         {
-
+            //cupsLeftInPitcher -= 1;
+            //game.player.pitcher.cupsLeftInPitcher -= 1;
         }
         public void AddProfitToWallet()
         {

@@ -38,8 +38,9 @@ namespace LemonadeStand_3DayStarter
             player.recipe.AddingAmountOfLemons(player.inventory);
             player.recipe.AddingAmountOfSugarCubes(player.inventory);
             player.recipe.AddingAmountOfIceCubes(player.inventory);
-            player.pitcher.DisplayLeftoverInventory(player.inventory);
             day.weather.DisplayForecast();
+            player.pitcher.FillPitcher(player.inventory, player.recipe);
+            player.pitcher.DisplayLeftoverInventory(player.inventory);
             day.weather.DisplayActualWeather();
             Console.ReadLine();
             //program works, keep adding functions
