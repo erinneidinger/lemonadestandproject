@@ -14,87 +14,165 @@ namespace LemonadeStand_3DayStarter
         Random rnd = new Random();
         public int cupsLeftInPitcher;
         public int cup;
+        public double profit;
+        public int totalcustomers;
+        public int totalpeopleseen;
 
-        public Day()
+        public Day(Player player)
         {
             weather = new Weather();
             customer = new Customer();
             cupsLeftInPitcher = 12;
+            DetermineCustomers(player);
         }
-
+        public void RunDay(Player player, Store store)
+        {
+           
+            store.SellLemons(player);
+            store.SellSugarCubes(player);
+            store.SellIceCubes(player);
+            store.SellCups(player);
+            player.wallet.DisplayBalance(player.wallet.Money);
+            weather.DisplayForecast();
+            player.recipe.AddingAmountOfLemons(player.inventory);
+            player.recipe.AddingAmountOfSugarCubes(player.inventory);
+            player.recipe.AddingAmountOfIceCubes(player.inventory);
+            player.recipe.DeterminePricePerCup();
+            player.pitcher.FillPitcher(player.inventory, player.recipe);
+            player.pitcher.DisplayLeftoverInventory(player.inventory);
+            weather.DisplayActualWeather(); //where game ends. 
+            DisplayHowManyCustomers();
+            DisplayProfit();
+        }
         public void SubtractCup()
         {
-            
             cupsLeftInPitcher -= 1;
         }
-        public void AddProfitToWallet()
+        public int DetermineCustomers(Player player)
         {
-            //player.wallet.money += player.recipe.pricePerCup; 
-        }
-        public void DetermineCustomers(Weather weather)
-        {
-            if (weather.temperature <= 32)
+            if (weather.actualtemperature <= 32)
             {
-                if (rnd.Next(0, 100) < 30)
-                {
 
-                    SubtractCup();
-                    AddProfitToWallet();
-                }
-                else
+                while (totalpeopleseen < 50)
                 {
-                    //pass by
+                    if (rnd.Next(0, 100) < 30)
+                    {
+                        if (3 < player.recipe.pricePerCup || player.recipe.pricePerCup < 10)
+                        {
+                            AddProfitToWallet();
+                            totalcustomers += 1;
+                            totalpeopleseen += 1;
+                        }
+                    }
+                    else
+                    {
+                        totalpeopleseen += 1;
+                    }
                 }
+                return totalpeopleseen;
             }
-            else if (weather.temperature >= 40 && weather.temperature <= 60)
+            else if (weather.actualtemperature >= 40 && weather.actualtemperature <= 60)
             {
-                if (rnd.Next(0, 100) < 50)
+                while (totalpeopleseen < 70)
                 {
-                    SubtractCup();
-                    AddProfitToWallet();
+                    if (rnd.Next(0, 100) < 50)
+                    {
+                        if (9 < player.recipe.pricePerCup || player.recipe.pricePerCup < 18)
+                        {
+                            AddProfitToWallet();
+                            totalcustomers += 1;
+                            totalpeopleseen += 1;
+                        }
+                    }
+                    else
+                    {
+                        totalpeopleseen += 1;
+                    }
                 }
-                else
-                {
-                    //pass by
-                }
+                return totalpeopleseen;
             }
-            else if (weather.temperature > 60 && weather.temperature <= 80)
+            else if (weather.actualtemperature > 60 && weather.actualtemperature <= 80)
             {
-                if (rnd.Next(0, 100) < 60)
+                while (totalpeopleseen < 100)
                 {
-                    SubtractCup();
-                    AddProfitToWallet();
+                    if (rnd.Next(0, 100) < 60)
+                    {
+                        if (17 < player.recipe.pricePerCup || player.recipe.pricePerCup < 23)
+                        {
+                            AddProfitToWallet();
+                            totalcustomers += 1;
+                            totalpeopleseen += 1;
+                        }
+                    }
+                    else
+                    {
+                        totalpeopleseen += 1;
+                    }
                 }
-                else
-                {
-                    //pass by
-                }
+
+                return totalpeopleseen;
             }
-            else if (weather.temperature > 80 && weather.temperature <= 97)
+            else if (weather.actualtemperature > 80 && weather.actualtemperature <= 97)
             {
-                if (rnd.Next(0, 100) < 75)
+
+            while (totalpeopleseen < 120)
                 {
-                    SubtractCup();
-                    AddProfitToWallet();
+                    if (rnd.Next(0, 100) < 75)
+                    {
+                        if (22 < player.recipe.pricePerCup || player.recipe.pricePerCup < 29)
+                        {
+                            AddProfitToWallet();
+                            totalcustomers += 1;
+                        }
+                       
+                    }
+                    else
+                    {
+                        totalpeopleseen += 1;
+                    }
                 }
-                else
-                {
-                    //pass by
-                }
+
+                return totalpeopleseen;
             }
             else
             {
-                if (rnd.Next(0, 100) < 85)
+
+            while(totalpeopleseen < 150)
                 {
-                    SubtractCup();
-                    AddProfitToWallet();
+                    if (rnd.Next(0, 100) < 85)
+                    {
+                        if (28 < player.recipe.pricePerCup || player.recipe.pricePerCup < 36)
+                        {
+                            AddProfitToWallet();
+                            totalcustomers += 1;
+                        }
+                        
+                    }
+                    else
+                    {
+                        totalpeopleseen += 1;
+                    }
                 }
-                else
-                {
-                    //pass by
-                }
+
+                return totalpeopleseen; 
             }
         }
-        
+
+        public void DisplayHowManyCustomers()
+        {
+            Console.WriteLine("Total people seen today: " + totalpeopleseen);
+            Console.WriteLine("Total customers: " + totalcustomers);
+            Console.WriteLine(totalcustomers + " out of " + totalpeopleseen + " bought lemonade.");
+        }
+        public void AddProfitToWallet()
+        {
+            SubtractCup();
+            //wallet.money += profit; 
+        }
+        public void DisplayProfit()
+        {
+            //profit += player.recipe.pricePerCup;
+        }
+
     }
 }

@@ -46,8 +46,9 @@ namespace LemonadeStand_3DayStarter
         }
         public void AddingAmountOfIceCubes(Inventory inventory)
         {
-            Console.WriteLine("How many ice cubes would you like to add to your recipe?");
+            Console.WriteLine("How many ice cubes would you like to add to your recipe? (Type how many you would like per cup)");
             amountOfIceCubes = Convert.ToInt32(Console.ReadLine());
+            amountOfIceCubes *= 12;
             if (amountOfIceCubes > inventory.iceCubes.Count)
             {
                 Console.WriteLine("Whoops, you don't have that many ice cubes in your inventory. Please add an amount that is equal or less than what you bought.");
@@ -62,7 +63,7 @@ namespace LemonadeStand_3DayStarter
         {
             Console.WriteLine("Please write the price per cup (in cents):");
             pricePerCup = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Your cups cost " + pricePerCup + " cents.");
+            Console.WriteLine("Your lemonade costs " + pricePerCup + " cents.");
         }
     }
 }

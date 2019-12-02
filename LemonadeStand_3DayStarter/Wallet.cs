@@ -31,5 +31,10 @@ namespace LemonadeStand_3DayStarter
         {
             Console.WriteLine("Your current balence is " + money + ".");
         }
+
+        public void DisplayTotalProfit(double money)
+        {
+            //
+        }
     }
 }

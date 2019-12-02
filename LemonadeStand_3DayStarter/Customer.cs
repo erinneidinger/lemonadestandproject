@@ -17,66 +17,7 @@ namespace LemonadeStand_3DayStarter
         {
             
         }
-        public void DetermineCustomers (Weather weather)
-        {
-            if(weather.temperature <= 32)
-            {
-                if (rnd.Next(0, 100) < 30)
-                {
-                   
-                    //subtract cup and pay price per cup
-                }
-                else
-                {
-                    //pass by
-                }
-            }
-            else if(weather.temperature >= 40 && weather.temperature <= 60)
-            {
-                if (rnd.Next(0, 100) < 50)
-                {
-                    //subtract cup and pay price per cup
-                }
-                else
-                {
-                    //pass by
-                }
-            }
-            else if(weather.temperature > 60 && weather.temperature <= 80)
-            {
-                if (rnd.Next(0, 100) < 60)
-                {
-                   //subtract cup and pay price per cup
-                }
-                else
-                {
-                    //pass by
-                }
-            }
-            else if(weather.temperature > 80 && weather.temperature <= 97)
-            {
-                if (rnd.Next(0, 100) < 75)
-                {
-                    //subtract cup and pay price per cup
-                }
-                else
-                {
-                    //pass by
-                }
-            }
-            else
-            {
-                if (rnd.Next(0, 100) < 85)
-                {
-                    //subtract cup and pay price per cup
-                }
-                else
-                {
-                    //pass by
-                }
-            }
-        }
-
+       
         public void IdealCustomerPrice()
         {
 
