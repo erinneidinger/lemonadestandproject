@@ -17,7 +17,6 @@ namespace LemonadeStand_3DayStarter
         public Game()
         {
            player = new Player();
-           player = new Player();
            store = new Store();
            
         }
@@ -34,18 +33,24 @@ namespace LemonadeStand_3DayStarter
             store.SellIceCubes(player);
             store.SellCups(player);
             player.wallet.DisplayBalance(player.wallet.Money);
-            player.recipe.DeterminePricePerCup();
+            day.weather.DisplayForecast();
             player.recipe.AddingAmountOfLemons(player.inventory);
             player.recipe.AddingAmountOfSugarCubes(player.inventory);
             player.recipe.AddingAmountOfIceCubes(player.inventory);
-            day.weather.DisplayForecast();
+            player.recipe.DeterminePricePerCup();
             player.pitcher.FillPitcher(player.inventory, player.recipe);
             player.pitcher.DisplayLeftoverInventory(player.inventory);
             day.weather.DisplayActualWeather();
+          
             Console.ReadLine();
             //program works, keep adding functions
+        }
+        public void PlayGameForWeek()
+        {
+            for (int i = 0; i < 7; i++)
+            {
 
-            
+            }
         }
     }
 }

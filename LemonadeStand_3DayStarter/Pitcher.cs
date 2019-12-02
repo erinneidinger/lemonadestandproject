@@ -8,14 +8,13 @@ namespace LemonadeStand_3DayStarter
 {
     class Pitcher
     {
-        public int cupsLeftInPitcher;
+        
         public int leftoverLemons;
         public int leftoverSugarcubes;
         public int leftoverIcecubes;
    
         public Pitcher()
         {
-            cupsLeftInPitcher = 12;
         }
 
         public void FillPitcher(Inventory inventory, Recipe recipe)

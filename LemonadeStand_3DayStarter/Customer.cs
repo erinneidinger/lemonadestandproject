@@ -11,21 +11,20 @@ namespace LemonadeStand_3DayStarter
         List<string> Names = new List<string>() { "Jess", "Nick", "Cece", "Winston", "Schmidt" };
         string name;
         Random rnd = new Random();
-        int nametotal;
 
 
         public Customer()
         {
-            //randomindex = rnd.Next(0, nametotal);
+            
         }
-        public void PercentageBuyingLemonade (Weather weather)
+        public void DetermineCustomers (Weather weather)
         {
             if(weather.temperature <= 32)
             {
                 if (rnd.Next(0, 100) < 30)
                 {
                    
-                    //buy lemonade
+                    //subtract cup and pay price per cup
                 }
                 else
                 {
@@ -36,7 +35,7 @@ namespace LemonadeStand_3DayStarter
             {
                 if (rnd.Next(0, 100) < 50)
                 {
-                    //buy lemonade
+                    //subtract cup and pay price per cup
                 }
                 else
                 {
@@ -47,7 +46,7 @@ namespace LemonadeStand_3DayStarter
             {
                 if (rnd.Next(0, 100) < 60)
                 {
-                    //buy lemonade
+                   //subtract cup and pay price per cup
                 }
                 else
                 {
@@ -58,7 +57,7 @@ namespace LemonadeStand_3DayStarter
             {
                 if (rnd.Next(0, 100) < 75)
                 {
-                    //buy lemonade
+                    //subtract cup and pay price per cup
                 }
                 else
                 {
@@ -69,7 +68,7 @@ namespace LemonadeStand_3DayStarter
             {
                 if (rnd.Next(0, 100) < 85)
                 {
-                    //buy lemonade
+                    //subtract cup and pay price per cup
                 }
                 else
                 {

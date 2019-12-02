@@ -17,7 +17,9 @@ namespace LemonadeStand_3DayStarter
 
         public Weather()
         {
-           
+            RandomizeCondition();
+            RandomizeTemperature();
+            DetermineActualWeather();
         }
 
         private string RandomizeCondition()
@@ -30,11 +32,10 @@ namespace LemonadeStand_3DayStarter
         private string RandomizeTemperature()
         
         {
-            Console.WriteLine();
             switch (condition)
             {
                 case "Snowing":
-                    temperature = rnd.Next(0, 32);
+                    temperature = rnd.Next(30, 32);
                     forecast = (weatherConditions[0] + " and " + temperature);
                     break;
                 case "Raining":
@@ -42,7 +43,7 @@ namespace LemonadeStand_3DayStarter
                     forecast = (weatherConditions[1] + " and " + temperature);
                     break;
                 case "Sunny and clear":
-                    temperature = rnd.Next(55, 110);
+                    temperature = rnd.Next(55, 105);
                     forecast = (weatherConditions[2] + " and " + temperature);
                     break;
                 case "Overcast":
@@ -57,22 +58,21 @@ namespace LemonadeStand_3DayStarter
         }
         public string DetermineActualWeather()
         {
-            todayslow = temperature - 10;
-            todayshigh = temperature + 10;
+            todayslow = (temperature - 10);
+            todayshigh = (temperature + 10);
             actualtemperature = rnd.Next(todayslow, todayshigh);
-            actualweather = (temperature + " and " + weatherConditions);
+            actualweather = (condition + " and " + actualtemperature);
             return actualweather;
         }
         public void DisplayForecast()
         {
-            RandomizeCondition();
-            RandomizeTemperature();
-            Console.WriteLine(forecast);
+           
+            Console.WriteLine("Tomorrow's forecast is: " + forecast);
         }
         public void DisplayActualWeather()
         {
             
-            Console.WriteLine(actualweather);
+            Console.WriteLine("Today's actual weather is: " + actualweather);
         }
 
     }
