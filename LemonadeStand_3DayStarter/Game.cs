@@ -28,7 +28,6 @@ namespace LemonadeStand_3DayStarter
         public void StartGame()
         {
             PlayGameForWeek();
-            //program works, keep adding functions
         }
         public void PlayGameForWeek()
         {

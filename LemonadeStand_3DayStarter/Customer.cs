@@ -17,10 +17,5 @@ namespace LemonadeStand_3DayStarter
         {
             
         }
-       
-        public void IdealCustomerPrice()
-        {
-
-        }
     }
 }

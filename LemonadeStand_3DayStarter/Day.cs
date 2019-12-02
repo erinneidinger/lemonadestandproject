@@ -17,13 +17,16 @@ namespace LemonadeStand_3DayStarter
         public double profit;
         public int totalcustomers;
         public int totalpeopleseen;
+        public double currentbalancetotal;
+        public double wholePrice;
 
         public Day(Player player)
         {
             weather = new Weather();
             customer = new Customer();
             cupsLeftInPitcher = 12;
-            DetermineCustomers(player);
+           
+            
         }
         public void RunDay(Player player, Store store)
         {
@@ -32,7 +35,7 @@ namespace LemonadeStand_3DayStarter
             store.SellSugarCubes(player);
             store.SellIceCubes(player);
             store.SellCups(player);
-            player.wallet.DisplayBalance(player.wallet.Money);
+            player.wallet.DisplayBalance();
             weather.DisplayForecast();
             player.recipe.AddingAmountOfLemons(player.inventory);
             player.recipe.AddingAmountOfSugarCubes(player.inventory);
@@ -40,16 +43,23 @@ namespace LemonadeStand_3DayStarter
             player.recipe.DeterminePricePerCup();
             player.pitcher.FillPitcher(player.inventory, player.recipe);
             player.pitcher.DisplayLeftoverInventory(player.inventory);
-            weather.DisplayActualWeather(); //where game ends. 
+            weather.DisplayActualWeather();
+            DetermineCustomers(player);
             DisplayHowManyCustomers();
-            DisplayProfit();
+            DisplayProfit(player.recipe);
+            AddProfitToWallet(player.wallet);
+            DisplayCurrentTotal();
         }
         public void SubtractCup()
         {
             cupsLeftInPitcher -= 1;
         }
+
+
         public int DetermineCustomers(Player player)
         {
+
+            wholePrice = Convert.ToInt32(player.recipe.pricePerCup);
             if (weather.actualtemperature <= 32)
             {
 
@@ -57,9 +67,8 @@ namespace LemonadeStand_3DayStarter
                 {
                     if (rnd.Next(0, 100) < 30)
                     {
-                        if (3 < player.recipe.pricePerCup || player.recipe.pricePerCup < 10)
+                        if (3 < wholePrice || wholePrice < 10)
                         {
-                            AddProfitToWallet();
                             totalcustomers += 1;
                             totalpeopleseen += 1;
                         }
@@ -77,9 +86,8 @@ namespace LemonadeStand_3DayStarter
                 {
                     if (rnd.Next(0, 100) < 50)
                     {
-                        if (9 < player.recipe.pricePerCup || player.recipe.pricePerCup < 18)
+                        if (9 < wholePrice || wholePrice < 18)
                         {
-                            AddProfitToWallet();
                             totalcustomers += 1;
                             totalpeopleseen += 1;
                         }
@@ -97,9 +105,8 @@ namespace LemonadeStand_3DayStarter
                 {
                     if (rnd.Next(0, 100) < 60)
                     {
-                        if (17 < player.recipe.pricePerCup || player.recipe.pricePerCup < 23)
+                        if (17 < wholePrice || wholePrice < 23)
                         {
-                            AddProfitToWallet();
                             totalcustomers += 1;
                             totalpeopleseen += 1;
                         }
@@ -119,10 +126,10 @@ namespace LemonadeStand_3DayStarter
                 {
                     if (rnd.Next(0, 100) < 75)
                     {
-                        if (22 < player.recipe.pricePerCup || player.recipe.pricePerCup < 29)
+                        if (22 < wholePrice || wholePrice < 29)
                         {
-                            AddProfitToWallet();
                             totalcustomers += 1;
+                            totalpeopleseen += 1;
                         }
                        
                     }
@@ -141,19 +148,17 @@ namespace LemonadeStand_3DayStarter
                 {
                     if (rnd.Next(0, 100) < 85)
                     {
-                        if (28 < player.recipe.pricePerCup || player.recipe.pricePerCup < 36)
+                        if (28 < wholePrice || wholePrice < 36)
                         {
-                            AddProfitToWallet();
                             totalcustomers += 1;
+                            totalpeopleseen += 1;
                         }
-                        
                     }
                     else
                     {
                         totalpeopleseen += 1;
                     }
                 }
-
                 return totalpeopleseen; 
             }
         }
@@ -164,14 +169,20 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("Total customers: " + totalcustomers);
             Console.WriteLine(totalcustomers + " out of " + totalpeopleseen + " bought lemonade.");
         }
-        public void AddProfitToWallet()
+        
+        public void DisplayProfit(Recipe recipe)
         {
-            SubtractCup();
-            //wallet.money += profit; 
+            profit = totalcustomers * recipe.pricePerCup;
+            Console.WriteLine("The profit from today's sale is " + profit + "!");
         }
-        public void DisplayProfit()
+        public void AddProfitToWallet(Wallet wallet)
         {
-            //profit += player.recipe.pricePerCup;
+           currentbalancetotal = wallet.Money + profit;
+        }
+
+        public void DisplayCurrentTotal()
+        {
+            Console.WriteLine("You currently have " + currentbalancetotal + " in your wallet.");
         }
 
     }

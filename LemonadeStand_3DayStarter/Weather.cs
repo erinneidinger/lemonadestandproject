@@ -7,7 +7,7 @@ namespace LemonadeStand_3DayStarter
     {
         public string condition;
         public int temperature;
-        public List<string> weatherConditions = new List<string>() { "Snowing", "Raining", "Sunny and clear", "Overcast"};
+        public List<string> weatherConditions;
         public string forecast;
         Random rnd = new Random();
         public int todayslow;
@@ -24,30 +24,29 @@ namespace LemonadeStand_3DayStarter
 
         private string RandomizeCondition()
         {
-            List<string> weatherConditions = new List<string>() { "Snowing", "Raining", "Sunny and clear", "Overcast" };
-            condition = weatherConditions[rnd.Next(weatherConditions.Count)];
+           weatherConditions = new List<string>() { "Snowing", "Raining", "Sunny and clear", "Overcast" };
+           condition = weatherConditions[rnd.Next(weatherConditions.Count)];
 
             return condition;
         }
         private string RandomizeTemperature()
-        
         {
             switch (condition)
             {
                 case "Snowing":
-                    temperature = rnd.Next(30, 32);
+                    temperature = rnd.Next(31, 32);
                     forecast = (weatherConditions[0] + " and " + temperature);
                     break;
                 case "Raining":
-                    temperature = rnd.Next(45, 100);
+                    temperature = rnd.Next(55, 100);
                     forecast = (weatherConditions[1] + " and " + temperature);
                     break;
                 case "Sunny and clear":
-                    temperature = rnd.Next(55, 105);
+                    temperature = rnd.Next(65, 110);
                     forecast = (weatherConditions[2] + " and " + temperature);
                     break;
                 case "Overcast":
-                    temperature = rnd.Next(50, 90);
+                    temperature = rnd.Next(60, 90);
                     forecast = (weatherConditions[3] + " and " + temperature);
                     break;
                 default:

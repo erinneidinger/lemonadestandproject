@@ -16,6 +16,10 @@ namespace LemonadeStand_3DayStarter
             {
                 return money;
             }
+            set
+            {
+                money = 20.00;
+            }
         }
 
         public Wallet()
@@ -23,18 +27,14 @@ namespace LemonadeStand_3DayStarter
             money = 20.00;
         }
 
-        public void PayMoneyForItems(double transactionAmount)
+        public double PayMoneyForItems(double transactionAmount)
         {
             money -= transactionAmount;
+            return money;
         }
-        public void DisplayBalance(double money)
+        public void DisplayBalance()
         {
             Console.WriteLine("Your current balence is " + money + ".");
-        }
-
-        public void DisplayTotalProfit(double money)
-        {
-            //
         }
     }
 }
