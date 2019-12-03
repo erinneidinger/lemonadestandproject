@@ -11,14 +11,23 @@ namespace LemonadeStand_3DayStarter
         public int amountOfLemons;
         public int amountOfSugarCubes;
         public int amountOfIceCubes;
+        public int amountOfCups;
         public double pricePerCup;
 
         public Recipe()
         {
         }
+
+        public void AddToRecipe(Inventory inventory)
+        {
+            AddingAmountOfLemons(inventory);
+            AddingAmountOfSugarCubes(inventory);
+            AddingAmountOfIceCubes(inventory);
+            AddAllCupsToRecipe(inventory);
+        }
         public void AddingAmountOfLemons(Inventory inventory)
         {
-            Console.WriteLine("How many lemons would you like to add to your recipe?");
+            Console.WriteLine("How many lemons would you like to add to your pitcher of lemonade?");
             amountOfLemons = Convert.ToInt32(Console.ReadLine());
             if(amountOfLemons > inventory.lemons.Count)
             {
@@ -32,7 +41,7 @@ namespace LemonadeStand_3DayStarter
         }
         public void AddingAmountOfSugarCubes(Inventory inventory)
         {
-            Console.WriteLine("How many sugar cubes would you like to add to your recipe?");
+            Console.WriteLine("How many sugar cubes would you like to add to your pitcher of lemonade?");
             amountOfSugarCubes = Convert.ToInt32(Console.ReadLine());
             if (amountOfSugarCubes > inventory.sugarCubes.Count)
             {
@@ -46,7 +55,7 @@ namespace LemonadeStand_3DayStarter
         }
         public void AddingAmountOfIceCubes(Inventory inventory)
         {
-            Console.WriteLine("How many ice cubes would you like to add to your recipe? (Type how many you would like per cup)");
+            Console.WriteLine("How many ice cubes would you like to add to your pitcher of lemonade? (Type how many you would like per cup)");
             amountOfIceCubes = Convert.ToInt32(Console.ReadLine());
             amountOfIceCubes *= 12;
             if (amountOfIceCubes > inventory.iceCubes.Count)
@@ -59,12 +68,18 @@ namespace LemonadeStand_3DayStarter
                 Console.WriteLine("You added " + amountOfIceCubes + " ice cubes to your recipe.");
             }
         }
+
+        public void AddAllCupsToRecipe(Inventory inventory)
+        {
+            amountOfCups = inventory.cups.Count;
+        }
+
         public void DeterminePricePerCup()
         {
             Console.WriteLine("Please write the price per cup (in cents):");
             pricePerCup = Convert.ToDouble(Console.ReadLine());
             pricePerCup /= 100; 
-            Console.WriteLine("Your lemonade costs " + pricePerCup + " cents.");
+            Console.WriteLine("Your lemonade costs $" + pricePerCup + " dollars.");
         }
     }
 }

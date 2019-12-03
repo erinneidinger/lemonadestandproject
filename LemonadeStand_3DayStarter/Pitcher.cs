@@ -12,17 +12,54 @@ namespace LemonadeStand_3DayStarter
         public int leftoverLemons;
         public int leftoverSugarcubes;
         public int leftoverIcecubes;
+        public int cupsPerPitcher;
    
         public Pitcher()
         {
+            cupsPerPitcher = 0;
         }
 
-        public void FillPitcher(Inventory inventory, Recipe recipe)
+        public int FillPitcher(Inventory inventory, Recipe recipe, Store store, Player player)
         {
             inventory.lemons.RemoveRange(0, recipe.amountOfLemons);
             inventory.sugarCubes.RemoveRange(0, recipe.amountOfSugarCubes);
             inventory.iceCubes.RemoveRange(0, recipe.amountOfIceCubes);
-        }  
+            inventory.cups.RemoveRange(0, recipe.amountOfCups);
+            cupsPerPitcher = 12;
+
+            return cupsPerPitcher;
+        }
+
+        public int RefillPitcher(Inventory inventory, Recipe recipe, Store store, Player player, Day day)
+        {
+            if (inventory.lemons.Count < recipe.amountOfLemons)
+            {
+                Console.WriteLine("You ran out of lemons. Sold out!");
+                day.PostResults(player);
+                store.GoToStore(player);
+            }
+
+            else if (inventory.iceCubes.Count < recipe.amountOfIceCubes)
+            {
+                Console.WriteLine("You ran out of ice cubes. Sold out!");
+                day.PostResults(player);
+                store.GoToStore(player);
+            }
+            else if (inventory.sugarCubes.Count < recipe.amountOfSugarCubes)
+            {
+                Console.WriteLine("You ran out of sugar cubes. Sold out!");
+                day.PostResults(player);
+                store.GoToStore(player);
+            }
+            else
+            {
+                Console.WriteLine("You ran out of cups. Sold out!");
+                day.PostResults(player);
+                store.GoToStore(player);
+            }
+            return cupsPerPitcher;
+        }
+
         public void DisplayLeftoverInventory(Inventory inventory)
         {
             leftoverIcecubes = inventory.iceCubes.Count();

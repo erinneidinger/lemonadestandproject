@@ -9,53 +9,52 @@ namespace LemonadeStand_3DayStarter
         public int temperature;
         public List<string> weatherConditions;
         public string forecast;
-        Random rnd = new Random();
         public int todayslow;
         public int todayshigh;
         public int actualtemperature;
         public string actualweather;
 
-        public Weather()
+        public Weather(Random random)
         {
-            RandomizeCondition();
-            RandomizeTemperature();
-            DetermineActualWeather();
+            RandomizeCondition(random);
+            RandomizeTemperature(random);
+            DetermineActualWeather(random);
         }
 
-        private string RandomizeCondition()
+        public string RandomizeCondition(Random rnd)
         {
            weatherConditions = new List<string>() { "Snowing", "Raining", "Sunny and clear", "Overcast" };
            condition = weatherConditions[rnd.Next(weatherConditions.Count)];
 
             return condition;
         }
-        private string RandomizeTemperature()
+        private string RandomizeTemperature(Random rnd)
         {
             switch (condition)
             {
                 case "Snowing":
                     temperature = rnd.Next(31, 32);
-                    forecast = (weatherConditions[0] + " and " + temperature);
+                    forecast = (condition + " and " + temperature);
                     break;
                 case "Raining":
                     temperature = rnd.Next(55, 100);
-                    forecast = (weatherConditions[1] + " and " + temperature);
+                    forecast = (condition + " and " + temperature);
                     break;
                 case "Sunny and clear":
                     temperature = rnd.Next(65, 110);
-                    forecast = (weatherConditions[2] + " and " + temperature);
+                    forecast = (condition + " and " + temperature);
                     break;
                 case "Overcast":
                     temperature = rnd.Next(60, 90);
-                    forecast = (weatherConditions[3] + " and " + temperature);
+                    forecast = (condition + " and " + temperature);
                     break;
                 default:
-                    RandomizeCondition();
+                    RandomizeCondition(rnd);
                     break;
             }
             return forecast;
         }
-        public string DetermineActualWeather()
+        public string DetermineActualWeather(Random rnd)
         {
             todayslow = (temperature - 10);
             todayshigh = (temperature + 10);

@@ -13,64 +13,54 @@ namespace LemonadeStand_3DayStarter
         public Customer customer;
         Random rnd = new Random();
         public int cupsLeftInPitcher;
-        public int cup;
         public double profit;
         public int totalcustomers;
         public int totalpeopleseen;
         public double currentbalancetotal;
-        public double wholePrice;
+        public double wholePrice; 
 
-        public Day(Player player)
+        public Day(Player player, Random random)
         {
-            weather = new Weather();
+            weather = new Weather(random);
             customer = new Customer();
             cupsLeftInPitcher = 12;
-           
-            
         }
-        public void RunDay(Player player, Store store)
+
+        public void RunDay(Player player, Store store, Day day)
         {
-           
-            store.SellLemons(player);
-            store.SellSugarCubes(player);
-            store.SellIceCubes(player);
-            store.SellCups(player);
+            store.GoToStore(player);
             player.wallet.DisplayBalance();
             weather.DisplayForecast();
-            player.recipe.AddingAmountOfLemons(player.inventory);
-            player.recipe.AddingAmountOfSugarCubes(player.inventory);
-            player.recipe.AddingAmountOfIceCubes(player.inventory);
+            player.recipe.AddToRecipe(player.inventory);
             player.recipe.DeterminePricePerCup();
-            player.pitcher.FillPitcher(player.inventory, player.recipe);
+            wholePrice = player.recipe.pricePerCup;
+            player.pitcher.FillPitcher(player.inventory, player.recipe, store, player);
             player.pitcher.DisplayLeftoverInventory(player.inventory);
             weather.DisplayActualWeather();
-            DetermineCustomers(player);
+            DetermineCustomers(player, weather, store, day);
+            PostResults(player);
+        }
+
+        public void PostResults(Player player)
+        {
             DisplayHowManyCustomers();
             DisplayProfit(player.recipe);
             AddProfitToWallet(player.wallet);
             DisplayCurrentTotal();
         }
-        public void SubtractCup()
-        {
-            cupsLeftInPitcher -= 1;
-        }
 
-
-        public int DetermineCustomers(Player player)
+        public int DetermineCustomers(Player player, Weather weather, Store store, Day day)
         {
 
-            wholePrice = Convert.ToInt32(player.recipe.pricePerCup);
             if (weather.actualtemperature <= 32)
             {
-
-                while (totalpeopleseen < 50)
+                while (totalpeopleseen < rnd.Next(40, 60))
                 {
                     if (rnd.Next(0, 100) < 30)
                     {
-                        if (3 < wholePrice || wholePrice < 10)
+                        if (.03 < wholePrice || wholePrice < .10)
                         {
-                            totalcustomers += 1;
-                            totalpeopleseen += 1;
+                            BuyLemonade(player, store, day);
                         }
                     }
                     else
@@ -82,14 +72,13 @@ namespace LemonadeStand_3DayStarter
             }
             else if (weather.actualtemperature >= 40 && weather.actualtemperature <= 60)
             {
-                while (totalpeopleseen < 70)
+                while (totalpeopleseen < rnd.Next(60, 80))
                 {
                     if (rnd.Next(0, 100) < 50)
                     {
-                        if (9 < wholePrice || wholePrice < 18)
+                        if (.9 < wholePrice || wholePrice < .18)
                         {
-                            totalcustomers += 1;
-                            totalpeopleseen += 1;
+                            BuyLemonade(player, store, day);
                         }
                     }
                     else
@@ -101,14 +90,13 @@ namespace LemonadeStand_3DayStarter
             }
             else if (weather.actualtemperature > 60 && weather.actualtemperature <= 80)
             {
-                while (totalpeopleseen < 100)
+                while (totalpeopleseen < rnd.Next(90, 110))
                 {
                     if (rnd.Next(0, 100) < 60)
                     {
-                        if (17 < wholePrice || wholePrice < 23)
+                        if (.17 < wholePrice || wholePrice < .23)
                         {
-                            totalcustomers += 1;
-                            totalpeopleseen += 1;
+                            BuyLemonade(player, store, day);
                         }
                     }
                     else
@@ -122,36 +110,32 @@ namespace LemonadeStand_3DayStarter
             else if (weather.actualtemperature > 80 && weather.actualtemperature <= 97)
             {
 
-            while (totalpeopleseen < 120)
+            while (totalpeopleseen < rnd.Next(110, 150))
                 {
                     if (rnd.Next(0, 100) < 75)
                     {
-                        if (22 < wholePrice || wholePrice < 29)
+                        if (.22 < wholePrice || wholePrice < .29)
                         {
-                            totalcustomers += 1;
-                            totalpeopleseen += 1;
+                            BuyLemonade(player, store, day);
                         }
-                       
                     }
                     else
                     {
                         totalpeopleseen += 1;
                     }
                 }
-
                 return totalpeopleseen;
             }
-            else
+            else if(weather.actualtemperature > 97 && weather.actualtemperature <=130)
             {
 
-            while(totalpeopleseen < 150)
+            while(totalpeopleseen < rnd.Next(140, 200))
                 {
                     if (rnd.Next(0, 100) < 85)
                     {
-                        if (28 < wholePrice || wholePrice < 36)
+                        if (.28 < wholePrice || wholePrice < .36)
                         {
-                            totalcustomers += 1;
-                            totalpeopleseen += 1;
+                            BuyLemonade(player, store, day);
                         }
                     }
                     else
@@ -160,6 +144,24 @@ namespace LemonadeStand_3DayStarter
                     }
                 }
                 return totalpeopleseen; 
+            }
+            else
+            {
+                weather.RandomizeCondition(rnd);
+
+                return totalpeopleseen;
+            }
+        }
+        public void BuyLemonade(Player player, Store store, Day day)
+        {
+            if (cupsLeftInPitcher == 0)
+            {
+                player.pitcher.RefillPitcher(player.inventory, player.recipe, store, player, day);
+            }
+            else
+            {
+                totalcustomers += 1;
+                totalpeopleseen += 1;
             }
         }
 
