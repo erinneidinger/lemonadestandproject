@@ -29,7 +29,7 @@ namespace LemonadeStand_3DayStarter
 
                     Console.WriteLine("How many " + itemsToGet + " would you like to buy?");
         
-                userInputIsAnInteger = Int32.TryParse(Console.ReadLine(), out quantityOfItem);
+                userInputIsAnInteger = Int32.TryParse(Console.ReadLine().Trim(), out quantityOfItem);
             }
 
             return quantityOfItem;

@@ -12,6 +12,7 @@ namespace LemonadeStand_3DayStarter
         public int leftoverLemons;
         public int leftoverSugarcubes;
         public int leftoverIcecubes;
+        public int leftoverCups;
         public int cupsPerPitcher;
    
         public Pitcher()
@@ -19,12 +20,11 @@ namespace LemonadeStand_3DayStarter
             cupsPerPitcher = 0;
         }
 
-        public int FillPitcher(Inventory inventory, Recipe recipe, Store store, Player player)
+        public int FillPitcher(Player player)
         {
-            inventory.lemons.RemoveRange(0, recipe.amountOfLemons);
-            inventory.sugarCubes.RemoveRange(0, recipe.amountOfSugarCubes);
-            inventory.iceCubes.RemoveRange(0, recipe.amountOfIceCubes);
-            inventory.cups.RemoveRange(0, recipe.amountOfCups);
+            player.inventory.lemons.RemoveRange(0, player.recipe.amountOfLemons);
+            player.inventory.sugarCubes.RemoveRange(0, player.recipe.amountOfSugarCubes);
+            player.inventory.iceCubes.RemoveRange(0, player.recipe.amountOfIceCubes);
             cupsPerPitcher = 12;
 
             return cupsPerPitcher;
@@ -35,27 +35,27 @@ namespace LemonadeStand_3DayStarter
             if (inventory.lemons.Count < recipe.amountOfLemons)
             {
                 Console.WriteLine("You ran out of lemons. Sold out!");
-                day.PostResults(player);
-                store.GoToStore(player);
+                
             }
 
             else if (inventory.iceCubes.Count < recipe.amountOfIceCubes)
             {
                 Console.WriteLine("You ran out of ice cubes. Sold out!");
-                day.PostResults(player);
-                store.GoToStore(player);
+                
             }
             else if (inventory.sugarCubes.Count < recipe.amountOfSugarCubes)
             {
                 Console.WriteLine("You ran out of sugar cubes. Sold out!");
-                day.PostResults(player);
-                store.GoToStore(player);
+               
+            }
+            else if(inventory.cups.Count < recipe.amountOfCups)
+            {
+                Console.WriteLine("You ran out of cups. Sold out!");
+                
             }
             else
             {
-                Console.WriteLine("You ran out of cups. Sold out!");
-                day.PostResults(player);
-                store.GoToStore(player);
+                FillPitcher(player);
             }
             return cupsPerPitcher;
         }
@@ -65,7 +65,8 @@ namespace LemonadeStand_3DayStarter
             leftoverIcecubes = inventory.iceCubes.Count();
             leftoverLemons = inventory.lemons.Count();
             leftoverSugarcubes = inventory.sugarCubes.Count();
-            Console.WriteLine("In your inventory, you have " + leftoverIcecubes + " ice cubes, " + leftoverLemons + " lemons, and " + leftoverSugarcubes + " sugar cubes left.");
+            leftoverCups = inventory.cups.Count();
+            Console.WriteLine("In your inventory, you have " + leftoverIcecubes + " ice cubes, " + leftoverLemons + " lemons, " + leftoverSugarcubes + " sugar cubes and " + leftoverCups + "cups left.");
         }
     }
 }

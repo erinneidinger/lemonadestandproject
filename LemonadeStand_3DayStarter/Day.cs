@@ -17,7 +17,7 @@ namespace LemonadeStand_3DayStarter
         public int totalcustomers;
         public int totalpeopleseen;
         public double currentbalancetotal;
-        public double wholePrice; 
+        public double wholePrice;
 
         public Day(Player player, Random random)
         {
@@ -34,10 +34,10 @@ namespace LemonadeStand_3DayStarter
             player.recipe.AddToRecipe(player.inventory);
             player.recipe.DeterminePricePerCup();
             wholePrice = player.recipe.pricePerCup;
-            player.pitcher.FillPitcher(player.inventory, player.recipe, store, player);
-            player.pitcher.DisplayLeftoverInventory(player.inventory);
+            player.pitcher.FillPitcher(player);
             weather.DisplayActualWeather();
             DetermineCustomers(player, weather, store, day);
+            player.pitcher.DisplayLeftoverInventory(player.inventory);
             PostResults(player);
         }
 
@@ -51,14 +51,13 @@ namespace LemonadeStand_3DayStarter
 
         public int DetermineCustomers(Player player, Weather weather, Store store, Day day)
         {
-
-            if (weather.actualtemperature <= 32)
+            if (weather.actualtemperature > 0 && weather.actualtemperature <= 32)
             {
                 while (totalpeopleseen < rnd.Next(40, 60))
                 {
                     if (rnd.Next(0, 100) < 30)
                     {
-                        if (.03 < wholePrice || wholePrice < .10)
+                        if (.03 < wholePrice && wholePrice < .10)
                         {
                             BuyLemonade(player, store, day);
                         }
@@ -68,15 +67,14 @@ namespace LemonadeStand_3DayStarter
                         totalpeopleseen += 1;
                     }
                 }
-                return totalpeopleseen;
             }
-            else if (weather.actualtemperature >= 40 && weather.actualtemperature <= 60)
+            else if (weather.actualtemperature >= 33 && weather.actualtemperature <= 60)
             {
                 while (totalpeopleseen < rnd.Next(60, 80))
                 {
                     if (rnd.Next(0, 100) < 50)
                     {
-                        if (.9 < wholePrice || wholePrice < .18)
+                        if (.9 < wholePrice && wholePrice < .18)
                         {
                             BuyLemonade(player, store, day);
                         }
@@ -86,7 +84,6 @@ namespace LemonadeStand_3DayStarter
                         totalpeopleseen += 1;
                     }
                 }
-                return totalpeopleseen;
             }
             else if (weather.actualtemperature > 60 && weather.actualtemperature <= 80)
             {
@@ -94,7 +91,7 @@ namespace LemonadeStand_3DayStarter
                 {
                     if (rnd.Next(0, 100) < 60)
                     {
-                        if (.17 < wholePrice || wholePrice < .23)
+                        if (.17 < wholePrice && wholePrice < .23)
                         {
                             BuyLemonade(player, store, day);
                         }
@@ -104,17 +101,15 @@ namespace LemonadeStand_3DayStarter
                         totalpeopleseen += 1;
                     }
                 }
-
-                return totalpeopleseen;
             }
             else if (weather.actualtemperature > 80 && weather.actualtemperature <= 97)
             {
 
-            while (totalpeopleseen < rnd.Next(110, 150))
+                while (totalpeopleseen < rnd.Next(110, 150))
                 {
                     if (rnd.Next(0, 100) < 75)
                     {
-                        if (.22 < wholePrice || wholePrice < .29)
+                        if (.22 < wholePrice && wholePrice < .29)
                         {
                             BuyLemonade(player, store, day);
                         }
@@ -124,16 +119,15 @@ namespace LemonadeStand_3DayStarter
                         totalpeopleseen += 1;
                     }
                 }
-                return totalpeopleseen;
             }
-            else if(weather.actualtemperature > 97 && weather.actualtemperature <=130)
+            else if (weather.actualtemperature > 97 && weather.actualtemperature <= 130)
             {
 
-            while(totalpeopleseen < rnd.Next(140, 200))
+                while (totalpeopleseen < rnd.Next(140, 200))
                 {
                     if (rnd.Next(0, 100) < 85)
                     {
-                        if (.28 < wholePrice || wholePrice < .36)
+                        if (.28 < wholePrice && wholePrice < .36)
                         {
                             BuyLemonade(player, store, day);
                         }
@@ -143,14 +137,8 @@ namespace LemonadeStand_3DayStarter
                         totalpeopleseen += 1;
                     }
                 }
-                return totalpeopleseen; 
             }
-            else
-            {
-                weather.RandomizeCondition(rnd);
-
-                return totalpeopleseen;
-            }
+            return totalpeopleseen;
         }
         public void BuyLemonade(Player player, Store store, Day day)
         {
@@ -158,8 +146,12 @@ namespace LemonadeStand_3DayStarter
             {
                 player.pitcher.RefillPitcher(player.inventory, player.recipe, store, player, day);
             }
+            else if (player.inventory.cups.Count == 0)
+            {
+            }
             else
             {
+                player.inventory.cups.RemoveAt(0);
                 totalcustomers += 1;
                 totalpeopleseen += 1;
             }
@@ -171,7 +163,7 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("Total customers: " + totalcustomers);
             Console.WriteLine(totalcustomers + " out of " + totalpeopleseen + " bought lemonade.");
         }
-        
+
         public void DisplayProfit(Recipe recipe)
         {
             profit = totalcustomers * recipe.pricePerCup;
@@ -179,13 +171,12 @@ namespace LemonadeStand_3DayStarter
         }
         public void AddProfitToWallet(Wallet wallet)
         {
-           currentbalancetotal = wallet.Money + profit;
+            currentbalancetotal = wallet.Money + profit;
         }
 
         public void DisplayCurrentTotal()
         {
             Console.WriteLine("You currently have " + currentbalancetotal + " in your wallet.");
         }
-
     }
 }

@@ -28,7 +28,7 @@ namespace LemonadeStand_3DayStarter
         public void AddingAmountOfLemons(Inventory inventory)
         {
             Console.WriteLine("How many lemons would you like to add to your pitcher of lemonade?");
-            amountOfLemons = Convert.ToInt32(Console.ReadLine());
+            amountOfLemons = Convert.ToInt32(Console.ReadLine().Trim());
             if(amountOfLemons > inventory.lemons.Count)
             {
                 Console.WriteLine("Whoops, you don't have that many lemons in your inventory. Please add an amount that is equal or less than what you bought.");
@@ -42,7 +42,7 @@ namespace LemonadeStand_3DayStarter
         public void AddingAmountOfSugarCubes(Inventory inventory)
         {
             Console.WriteLine("How many sugar cubes would you like to add to your pitcher of lemonade?");
-            amountOfSugarCubes = Convert.ToInt32(Console.ReadLine());
+            amountOfSugarCubes = Convert.ToInt32(Console.ReadLine().Trim());
             if (amountOfSugarCubes > inventory.sugarCubes.Count)
             {
                 Console.WriteLine("Whoops, you don't have that many sugar cubes in your inventory. Please add an amount that is equal or less than what you bought.");
@@ -56,7 +56,7 @@ namespace LemonadeStand_3DayStarter
         public void AddingAmountOfIceCubes(Inventory inventory)
         {
             Console.WriteLine("How many ice cubes would you like to add to your pitcher of lemonade? (Type how many you would like per cup)");
-            amountOfIceCubes = Convert.ToInt32(Console.ReadLine());
+            amountOfIceCubes = Convert.ToInt32(Console.ReadLine().Trim());
             amountOfIceCubes *= 12;
             if (amountOfIceCubes > inventory.iceCubes.Count)
             {
@@ -77,7 +77,7 @@ namespace LemonadeStand_3DayStarter
         public void DeterminePricePerCup()
         {
             Console.WriteLine("Please write the price per cup (in cents):");
-            pricePerCup = Convert.ToDouble(Console.ReadLine());
+            pricePerCup = Convert.ToDouble(Console.ReadLine().Trim());
             pricePerCup /= 100; 
             Console.WriteLine("Your lemonade costs $" + pricePerCup + " dollars.");
         }

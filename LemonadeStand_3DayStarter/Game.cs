@@ -9,10 +9,7 @@ namespace LemonadeStand_3DayStarter
         Player player;
         List<Day> days = new List<Day>();
         Day day;
-        Store store;
-        int currentDay;
-      
-
+        Store store;      
 
         public Game()
         {
@@ -34,12 +31,8 @@ namespace LemonadeStand_3DayStarter
             for (int i = 0; i < 7; i++)
             {
                 days[i].RunDay(player, store, day);
-
-                if(i == 7)
-                {
-                    EndGame();
-                }
             }
+            EndGame();
         }
 
         public void BuildDays()
@@ -53,7 +46,26 @@ namespace LemonadeStand_3DayStarter
 
         public void EndGame()
         {
-            Environment.Exit(0);
+            Console.WriteLine("Nice job operating the lemonade stand for a week.");
+            ReturnForNextGame();
+        }
+
+        public void ReturnForNextGame()
+        {
+            Console.WriteLine("Thanks for playing! Press 1 to exit out, press any key to play again.");
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    Console.WriteLine("You are now exiting the game, goodbye!");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Let's Play");
+                    StartGame();
+                    break;
+            }
         }
     }
 }
