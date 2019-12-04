@@ -22,7 +22,11 @@ namespace LemonadeStand_3DayStarter
             PlayGameForWeek();
         }
 
-        public void StartGame()
+        public void StartGame() 
+        //My methods examplify single responsibility because they only do one action, and do it well. 
+        //In the game class, I have a method to start the game (StartGame), which will make the game playable for a week.
+        //I also have a BuildDays method, which will actually build the day and then will be transfered to PlayGameForWeek.
+        //My Endgame method will occur after a week, and will send user to ReturnForNextGame, which will give the player the option to Play Again or Quit.
         {
             PlayGameForWeek();
         }

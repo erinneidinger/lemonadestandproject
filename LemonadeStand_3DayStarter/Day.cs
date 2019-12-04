@@ -167,7 +167,7 @@ namespace LemonadeStand_3DayStarter
         public void DisplayProfit(Recipe recipe)
         {
             profit = totalcustomers * recipe.pricePerCup;
-            Console.WriteLine("The profit from today's sale is " + profit + "!");
+            Console.WriteLine("The profit from today's sale is $" + profit + "!");
         }
         public void AddProfitToWallet(Wallet wallet)
         {
@@ -176,7 +176,7 @@ namespace LemonadeStand_3DayStarter
 
         public void DisplayCurrentTotal()
         {
-            Console.WriteLine("You currently have " + currentbalancetotal + " in your wallet.");
+            Console.WriteLine("You currently have $" + currentbalancetotal + " in your wallet.");
         }
     }
 }

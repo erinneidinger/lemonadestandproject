@@ -21,6 +21,8 @@ namespace LemonadeStand_3DayStarter
             DetermineActualWeather(random);
         }
 
+        //Here I exercised the Open/Closed Principle by randomizing certain conditions and using a switch/case to predict rising requirements. 
+        //The List can be altered but will still run into the switch/case because the variable 'condition' will take on the randomized answer of the List.
         public string RandomizeCondition(Random rnd)
         {
            weatherConditions = new List<string>() { "Snowing", "Raining", "Sunny and clear", "Overcast" };
@@ -28,7 +30,7 @@ namespace LemonadeStand_3DayStarter
 
             return condition;
         }
-        private string RandomizeTemperature(Random rnd)
+        private string RandomizeTemperature(Random rnd) 
         {
             switch (condition)
             {

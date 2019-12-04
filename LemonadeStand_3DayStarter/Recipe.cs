@@ -79,7 +79,7 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("Please write the price per cup (in cents):");
             pricePerCup = Convert.ToDouble(Console.ReadLine().Trim());
             pricePerCup /= 100; 
-            Console.WriteLine("Your lemonade costs $" + pricePerCup + " dollars.");
+            Console.WriteLine("Your lemonade costs $" + pricePerCup + ".");
         }
     }
 }
